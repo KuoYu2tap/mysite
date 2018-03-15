@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import sys
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+# sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -36,10 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 外加django原生组件
+    'django.contrib.humanize',
     # 网站apps
-    'blog',
+    'blog.apps.BlogConfig',
     # 外接插件
     'markdown',
+
 ]
 
 MIDDLEWARE = [
@@ -105,19 +109,30 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+# 静态文件路径设置
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# 媒体文件路径设置
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-DEFAULT_AUTHOR = "KuoYu"
+# 统一分页设置
+BASE_PAGE_BY = 10
+BASE_ORPHANS = 5
+
+DEFAULT_AUTHOR = "admin"
+
+DEFAULT_IMG_URL = 'https://www.baidu.com/img/baidu_jgylogo3.gif'

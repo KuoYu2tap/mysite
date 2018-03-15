@@ -20,5 +20,5 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('', RedirectView.as_view(url='index/')),
     path('admin/', admin.site.urls),
-    path('index/', include('blog.urls', namespace='index')),  # include have namespace not path
+    path('blog/', include('blog.urls', namespace='blog')),  # include have namespace not path
 ]
