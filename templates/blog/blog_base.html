@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title_blk %}
+            Title
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+{% block nav_blk %}
+    <a href="{% url 'index:home' %}">主页</a>
+{% endblock %}
+<hr/>
+
+{% block content_blk %}
+    <hr/>
+    <p>文章列表</p>
+{% endblock %}
+
+
+
+{% block comment_blk %}
+    <hr/>
+    {% if comments is not None %}
+        {% for c in comments %}
+            {{ c }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+<p>标签列表</p>
+{% block tags_blk %}
+    {% for lt in locals_tags %}
+        <a href="{% url 'index:tag-find' lt.id %}">{{ lt }}</a>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>
