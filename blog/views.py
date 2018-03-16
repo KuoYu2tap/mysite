@@ -23,7 +23,7 @@ class IndexView(ListBaseView):
 
 
 # Archive界面需要展示文章的归档信息
-class ArchiveView(generic.ListView):
+class ArchiveView(ListBaseView):
     template_name = 'blog/archive.html'
 
 

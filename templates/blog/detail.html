@@ -1,17 +1,45 @@
 {% extends 'blog/base.html' %}
 {% block title %}
-    Detail
+    {{ article.title }}
 {% endblock %}
 
 {% block content %}
-    {{ article.title }}
-    {{ article.body_to_markdown |safe }}
-    {% for tag in article.get_tags %}
-        <ul>
-            <li>
-                <a href="{{ tag.get_abs_url }}">{{ tag }}</a>
-            </li>
-        </ul>>
-    {% endfor %}
-    <a href="{{ article.category.get_abs_url }}">{{ article.category }}</a>
+    <article class="post post-1">
+
+        <header class="entry-header">
+            <h1 class="entry-title">
+                {{ article.title }}
+            </h1>
+            <div class="entry-meta">
+                <span class="post-category"><a
+                        href="{{ article.get_category.get_abs_url }}">{{ article.get_category }}</a></span>
+                <span class="post-date"><a href="#"><time
+                        class="entry-date">{{ article.create_date |date:'Y-m-d H:s'}}</time></a></span>
+                <span class="post-author"><a href="#">{{ article.get_author }}</a></span>
+                <br/>
+                <span class="views-count">标签:
+                {% for tag in article.get_tags %}
+                    <span class="views-count">
+                            <a href="{{ tag.get_abs_url }}">{{ tag }}</a>
+                    </span>
+                {% endfor %}
+                </span>
+            </div>
+        </header>
+
+        <div class="entry-content clearfix">
+            {{ article.body_to_markdown |safe }}
+        </div>
+    </article>
+{% endblock %}
+
+{% block right_nav %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">文章目录</h3>
+        {% if 'toc' in article %}
+            {{ article.toc }}
+        {% endif %}
+    </div>
+    {% load blog_tags %}
+    {% show_right_nav %}
 {% endblock %}

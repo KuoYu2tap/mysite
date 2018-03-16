@@ -8,6 +8,7 @@ from . import models
 admin.site.site_header = '网站管理'
 admin.site.site_title = '博客后台管理'
 
+
 @admin.register(models.Articles)
 class ArticlesAdmin(admin.ModelAdmin):
     date_hierarchy = 'create_date'

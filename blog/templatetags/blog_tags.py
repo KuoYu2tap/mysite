@@ -42,7 +42,7 @@ def show_articles():
 def show_right_nav():
     # TODO: about
     about = None
-    date_category = models.Articles.objects
+    date_category = models.Articles.objects.all()
     category = models.Category.objects.all()
     tags = models.Tags.objects.all()
     content = {
@@ -58,3 +58,15 @@ def show_right_nav():
 def find_article_tags(article):
     tags = article.tags_set.all()
     return {'artice_tags': tags}
+
+@register.simple_tag
+def circle_articles(cur_page, loop_page):
+    offset = abs(cur_page - loop_page)
+    if offset < 5:
+        if cur_page == loop_page:
+            page_ele = '<li class="{}"><a href="?page={}">{}</a></li>'.format(loop_page, loop_page)
+        else:
+            page_ele = '<li><a href="?page={}">{}</a></li>'.format(loop_page,loop_page)
+        return page_ele
+    else:
+        return ''

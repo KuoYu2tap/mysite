@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <ul>
+    <ul style="font-size: +20px;">
         {% for article in object_list %}
             <li><a href="{{ article.get_abs_url }}">{{ article.title }}</a></li>
         {% endfor %}

@@ -79,7 +79,7 @@ class Articles(models.Model):
     update_date = models.DateTimeField(u'修改时间', auto_now=True)
     revise_freq = models.IntegerField(u'修改次数', default=0)
     views = models.IntegerField(u'阅读量', default=0)
-    slug = models.SlugField(u'url后缀', unique=True)
+    slug = models.SlugField(u'Slug', unique=True)
 
     category = models.ForeignKey(Category, verbose_name=u'分类', on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tags, verbose_name=u'标签')
@@ -128,6 +128,8 @@ class Articles(models.Model):
     def get_category(self):
         return self.category
 
+    def get_author(self):
+        return "KuoYu"
 
 # 开发时间线
 class TimeLine(models.Model):
