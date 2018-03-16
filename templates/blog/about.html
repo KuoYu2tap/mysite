@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+    About
+{% endblock %}
+{% block content %}
+<ul>
+    {% for timeline in timeline_list %}
+    <li>{{ timeline }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

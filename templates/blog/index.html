@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+    Index
+{% endblock %}
+
+{% block content %}
+    文章
+    <ul>
+        {% for article in articles %}
+            <li>
+                <a href="{{ article.get_abs_url }}">{{ article.title }}</a>-
+                {% for tag in article.get_tags %}
+                    <a href="{{ tag.get_abs_url }}">{{ tag.name }}</a>-
+                {% endfor %}
+                <a href="{{ article.get_category.get_abs_url }}">{{ article.get_category.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

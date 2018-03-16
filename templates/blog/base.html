@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Base Page
+        {% endblock %}
+    </title>
+    {% block metas %}
+        <meta name="description" content="{{ site_description }}">
+        <meta name="keywords" content="{{ site_keywords }}">
+    {% endblock %}
+
+    {% block links %}
+
+    {% endblock %}
+</head>
+
+<body>
+<div>
+    {# 上部导航模块开始 #}
+    {% block main_nav %}
+        {% include 'blog/tags/navbar.html' %}
+    {% endblock %}
+    {# 导航模块结束 #}
+</div>
+
+<div>
+    {% block right_nav %}
+        {% load blog_tags %}
+        {% show_right_nav %}
+    {% endblock %}
+</div>
+
+<div>
+    {# 主要内容块 #}
+    {% block content %}{% endblock %}
+    {# 主要内容块结束 #}
+</div>
+
+<div>
+    {# 页面底部 #}
+    {% block footer %}{% endblock %}
+    {# 页面底部结束 #}
+</div>
+</body>
+</html>

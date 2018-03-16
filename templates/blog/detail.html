@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+    Detail
+{% endblock %}
+
+{% block content %}
+    {{ article.title }}
+    {{ article.body_to_markdown |safe }}
+    {% for tag in article.get_tags %}
+        <ul>
+            <li>
+                <a href="{{ tag.get_abs_url }}">{{ tag }}</a>
+            </li>
+        </ul>>
+    {% endfor %}
+    <a href="{{ article.category.get_abs_url }}">{{ article.category }}</a>
+{% endblock %}
