@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-5 col-xs-8">
                 <div class="logo">
-                    <h1><a href="{% url 'blog:home' %}"><b></a></h1>
+                    <h1><a href="{% url 'blog:home' %}"><b>KuoYu's Blog</b></a></h1>
                 </div>
             </div><!-- col-md-4 -->
             <div class="col-md-8 col-sm-7 col-xs-4">
@@ -64,7 +64,7 @@
                     {# 添加主要内容 #}
                 {% endblock %}
             </main>
-            <aside class="col-md-4">
+            <aside class="col-md-4" style="position: relative">
                 {% block right_nav %}
                     {% load blog_tags %}
                     {% show_right_nav %}
