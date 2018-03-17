@@ -96,12 +96,6 @@ class Articles(models.Model):
     def get_abs_url(self):
         return reverse('blog:detail', kwargs={'slug': self.slug})
 
-    def body_to_markdown(self):
-        return markdown.markdown(self.body, extensions=[
-            'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
-        ])
-
     def update_views(self):
         self.views += 1
         self.save(update_fields=['views', ])
@@ -130,6 +124,7 @@ class Articles(models.Model):
 
     def get_author(self):
         return "KuoYu"
+
 
 # 开发时间线
 class TimeLine(models.Model):

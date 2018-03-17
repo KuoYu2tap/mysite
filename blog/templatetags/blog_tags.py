@@ -16,18 +16,18 @@ from .. import models
 register = template.Library()  # 自定义filter时必须加上
 
 
-@register.filter(is_safe=True)  # 注册template filter
-@stringfilter  # 希望字符串作为参数
-def to_markdown(value):
-    return mark_safe(markdown.markdown(
-        value,
-        extensions=[
-            'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
-            'markdown.extensions.toc',
-        ],
-        safe_mode=True,
-        enable_attributes=False))
+# @register.filter(is_safe=True)  # 注册template filter
+# @stringfilter  # 希望字符串作为参数
+# def to_markdown(value):
+#     return mark_safe(markdown.markdown(
+#         value,
+#         extensions=[
+#             'markdown.extensions.extra',
+#             'markdown.extensions.codehilite',
+#             'markdown.extensions.toc',
+#         ],
+#         safe_mode=True,
+#         enable_attributes=False))
 
 
 # TODO: 使用tag直接生成文本？
@@ -42,7 +42,8 @@ def show_articles():
 def show_right_nav():
     # TODO: about
     about = None
-    date_category = models.Articles.objects.all()
+    # 使用父类datetimes方法进行排序
+    date_category = models.Articles.objects.datetimes('create_date','month',order='DESC')
     category = models.Category.objects.all()
     tags = models.Tags.objects.all()
     content = {

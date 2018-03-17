@@ -4,7 +4,7 @@ from markdown import Markdown
 
 from mysite import settings
 from . import models
-
+import markdown
 
 # Create your views here.
 
@@ -26,6 +26,11 @@ class IndexView(ListBaseView):
 class ArchiveView(ListBaseView):
     template_name = 'blog/archive.html'
 
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super(IndexView, self).get_context_data()
+    #
+    #
+
 
 # 文章详细视图
 class DetailView(generic.DetailView):
@@ -35,13 +40,14 @@ class DetailView(generic.DetailView):
 
     def get_object(self, queryset=None):
         obj = super(DetailView, self).get_object(queryset=None)
-        md = Markdown(extensions=[
+        obj.update_views()
+        md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
             'markdown.extensions.toc',
         ])
-        obj.content = md.convert(obj.body)
-        obj.toc = md.toc
+        obj.body = md.convert(obj.body)
+        obj.TOC = md.toc
         return obj
     # TODO : add comment ,overwrite get_content_data method
 
@@ -67,6 +73,12 @@ class CategoryView(BaseFindView):
 class TagsView(BaseFindView):
     to_find_model = models.Tags
 
+class DateArchiveView(BaseFindView):
+    def get_queryset(self):
+        year = self.kwargs.get('y')
+        month = self.kwargs.get('m')
+        obj = self.model.objects.filter(create_date__year=year,create_date__month=month).order_by('-create_date')
+        return obj
 
 class AboutView(generic.ListView):
     model = models.TimeLine

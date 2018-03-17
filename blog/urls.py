@@ -20,5 +20,6 @@ urlpatterns = [
     path(r'tags/<slug:slug>', views.TagsView.as_view(), name='tags'),
     path(r'category/<slug:slug>', views.CategoryView.as_view(), name='category'),
     path(r'archive/',views.ArchiveView.as_view(),name='archive-page'),
+    path(r'archive/<int:y>/<int:m>', views.DateArchiveView.as_view(), name='date-archive'),
     path(r'about/',views.AboutView.as_view(),name='about'),
 ]
