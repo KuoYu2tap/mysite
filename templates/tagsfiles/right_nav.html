@@ -1,0 +1,57 @@
+{% if about is not None %}
+    <div class="widget widget-recent-posts">
+        <h3 class="widget-title">关于我</h3>
+        <ul>
+            {% for a in about %}
+                {{ a }}
+                {% empty %}
+                为空
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+
+{% if date_category is not None %}
+    <div class="widget widget-archives">
+        <h3 class="widget-title">日期归档</h3>
+
+        {% regroup date_category by year as year_list %}
+        <ul>
+            {% for month in year_list %}
+                {% for d in month.list %}
+                    <li><a href="{% url 'blog:date-archive' d.year d.month %}">{{ d | date:'Y年m月' }}</a></li>
+
+                {% endfor %}
+
+            {% endfor %}
+
+        </ul>
+
+
+    </div>
+{% endif %}
+
+{% if category is not None %}
+    <div class="widget widget-category">
+        <h3 class="widget-title">标签归档</h3>
+        <ul>
+            {% for c in category %}
+                <li><a href="{{ c.get_abs_url }}">{{ c }}</a>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+
+<div class="widget widget-tag-cloud">
+    <h3 class="widget-title">标签云</h3>
+    <ul>
+        {% for tag in tags %}
+            <li><a href="{{ tag.get_abs_url }}">{{ tag }}</a>
+        {% endfor %}
+    </ul>
+</div>
+<div class="rss">
+    <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+</div>
