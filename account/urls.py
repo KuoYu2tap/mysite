@@ -7,9 +7,10 @@
 # @Software: PyCharm
 
 from django.urls import path
-from .views import AccountView
-
+# from .views import AccountView
+from . import views
 app_name = 'account'
 urlpatterns = [
-    path(r'',AccountView.as_view(),name='detail'),
+    # path(r'',AccountView.as_view(),name='detail'),
+    path(r'',views.index,name='detail'),
 ]

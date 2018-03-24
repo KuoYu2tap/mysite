@@ -12,6 +12,8 @@ class Account(models.Model):
         ('clothing', '服饰'),
         ('viaticum', '出行'),
         ('learn', '学习'),
+        ('life','生活'),
+        ('social','社交'),
         ('entertainment', '娱乐'),
         ('healthy', '健康'),
         ('telephone', '电话费'),
@@ -20,8 +22,9 @@ class Account(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     reason = models.CharField(verbose_name='消费原因', choices=TAGS_CHOICE, default='foods', max_length=20)
-    cost = models.IntegerField(verbose_name='花费')
-    spent_date = models.DateTimeField(default=now)
+    cost = models.FloatField(verbose_name='花费')
+    describe = models.CharField(verbose_name='描述', max_length=20, blank=True, help_text='输入消费描述(小于20字)')
+    spent_date = models.DateField(default=now)
 
     class Meta:
         verbose_name = '账单'

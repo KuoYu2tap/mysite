@@ -21,4 +21,5 @@ urlpatterns = [
     path('', RedirectView.as_view(url='blog/')),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),  # include have namespace not path
+    path('account', include('account.urls', namespace='account')),
 ]

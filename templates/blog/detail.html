@@ -18,11 +18,11 @@
                 <span class="post-author"><a href="#">{{ article.get_author }}</a></span>
                 <br/>
                 <span class="views-count">标签:
-                {% for tag in article.get_tags %}
-                    <span class="views-count">
+                    {% for tag in article.get_tags %}
+                        <span class="views-count">
                             <a href="{{ tag.get_abs_url }}">{{ tag }}</a>
                     </span>
-                {% endfor %}
+                    {% endfor %}
                 </span>
             </div>
         </header>
@@ -34,10 +34,9 @@
 {% endblock %}
 
 {% block right_nav %}
-    <div class="widget widget-content">
+    <div class="article-toc ">
         <h3 class="widget-title">文章目录</h3>
-            {{ article.TOC |safe }}
+        <div class="toc"></div>
+        {{ article.TOC |safe }}
     </div>
-    {% load blog_tags %}
-    {% show_right_nav %}
 {% endblock %}

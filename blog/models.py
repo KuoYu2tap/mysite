@@ -69,7 +69,7 @@ class Articles(models.Model):
     IMG_LINK = settings.DEFAULT_IMG_URL
     # author = models.ForeignKey(settings.DEFAULT_AUTHOR,
     #                            verbose_name=u'作者', max_length=10, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(u'标题', max_length=150)
     summary = models.CharField(u'摘要', max_length=160)
     body = models.TextField(u'内容')

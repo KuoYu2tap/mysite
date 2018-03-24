@@ -12,8 +12,7 @@ admin.site.site_title = '博客后台管理'
 @admin.register(models.Articles)
 class ArticlesAdmin(admin.ModelAdmin):
     date_hierarchy = 'create_date'
-    exclude = ('views',)
-
+    exclude = ('views','create_date','revise_freq')
     list_display = ('title', 'author', 'create_date', 'update_date')
     list_per_page = 50
     filter_horizontal = ('tags', 'keywords')
@@ -24,6 +23,9 @@ class ArticlesAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(author=request.user)
 
+    # def save_model(self, request, obj, form, change):
+    #     if not author.id:
+    #         obj.name = request.User
 
 
 @admin.register(models.Tags)

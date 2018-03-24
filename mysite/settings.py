@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # 网站apps
     'blog.apps.BlogConfig',
+    'account.apps.AccountConfig',
     # 外接插件
     'markdown',
 
@@ -127,6 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     'static/blog/',
+    'static/echarts',
 ]
 # 媒体文件路径设置
 MEDIA_URL = '/media/'

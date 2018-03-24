@@ -6,25 +6,32 @@
     <title>
         {% block title %}
             Base Page
-        {% endblock %}
+        {% endblock %}- KuoYu's blog
     </title>
     {% block metas %}
         <!-- meta -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
+    {% block meta_metas %}
 
+    {% endblock %}
     {% block links %}
         <!-- css -->
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="{% static 'css/pace.css' %}">
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
         <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
         <script src="{% static 'js/pace.min.js' %}"></script>
+        <script src="{% static 'js/base.js' %}"></script>
         <script src="{% static 'js/modernizr.custom.js' %}"></script>
+    {% endblock %}
+    {% block meta_links %}
     {% endblock %}
 </head>
 
@@ -59,21 +66,26 @@
 <div class="content-body">
     <div class="container">
         <div class="row">
-             <main class="col-md-8">
+            <main class="col-md-8">
                 {% block content %}
                     {# 添加主要内容 #}
                 {% endblock %}
             </main>
-            <aside class="col-md-4" style="position: relative">
-                {% block right_nav %}
-                    {% load blog_tags %}
-                    {% show_right_nav %}
-                {% endblock %}
+            <aside class="col-md-4">
+                <div class="widget widget-content" style="margin-top: -10%; margin-left: 20%">
+                    {% block right_nav %}
+                        {% load blog_tags %}
+                        {% show_right_nav %}
+                    {% endblock %}
+                </div>
             </aside>
         </div>
     </div>
 </div>
 
+<div class="text-center" id="to-top">
+    <i class="fa fa-chevron-up" id="btn-top" title="回到顶部"></i>
+</div>
 
 <footer id="site-footer">
     <div class="container">

@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+    Pyecharts
+{% endblock %}
+{% block meta_links %}
+    {% for s in script_list %}
+        <script src="{{ host }}/{{ s }}.js"></script>
+    {% endfor %}
+
+{% endblock %}
+
+{% block content %}
+{#    {% for object in  accounts %}#}
+{#        {{ object.get_cn_reason }}-{{ object.cost }}-{{ object.spent_date | date:"Y-m-d" }}#}
+{#    {% endfor %}#}
+{{ myechart|safe }}
+{% endblock %}
+
+{% block right_nav %}
+
+{% endblock %}
