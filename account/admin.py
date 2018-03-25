@@ -10,7 +10,7 @@ class AccountAdmin(admin.ModelAdmin):
     date_hierarchy = 'spent_date'
     list_filter = ('reason',)
     list_per_page = 20
-    list_display = ('reason', 'describe', 'cost')
+    list_display = ('reason', 'spent_date', 'describe', 'cost')
 
     def get_queryset(self, request):
         qs = super(AccountAdmin, self).get_queryset(request)

@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 外加django原生组件
     'django.contrib.humanize',
+    # 外接插件
+    'markdown',
+    'rest_framework',
+    'rest_framework.authtoken',
     # 网站apps
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
-    # 外接插件
-    'markdown',
-
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [

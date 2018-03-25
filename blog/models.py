@@ -85,6 +85,7 @@ class Articles(models.Model):
     tags = models.ManyToManyField(Tags, verbose_name=u'标签')
     keywords = models.ManyToManyField(KeyWords, verbose_name=u'关键词', help_text='文章关键词')
 
+
     class Meta:
         verbose_name = u'文章'
         verbose_name_plural = verbose_name

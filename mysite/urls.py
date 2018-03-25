@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from api.urls import router
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('', RedirectView.as_view(url='blog/')),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),  # include have namespace not path
-    path('account', include('account.urls', namespace='account')),
+    path('account/', include('account.urls', namespace='account')),
+    path('api/',include(router.urls)),
+    path('api/token/', obtain_auth_token, name='api-token'),
 ]

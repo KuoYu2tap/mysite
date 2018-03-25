@@ -14,6 +14,7 @@ class Account(models.Model):
         ('learn', '学习'),
         ('life','生活'),
         ('social','社交'),
+        ('home','居家'),
         ('entertainment', '娱乐'),
         ('healthy', '健康'),
         ('telephone', '电话费'),
