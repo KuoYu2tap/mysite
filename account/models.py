@@ -12,7 +12,6 @@ class Account(models.Model):
         ('clothing', '服饰'),
         ('viaticum', '出行'),
         ('learn', '学习'),
-        ('life','生活'),
         ('social','社交'),
         ('home','居家'),
         ('entertainment', '娱乐'),

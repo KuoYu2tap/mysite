@@ -12,8 +12,8 @@ from django.utils.timezone import now
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 def draw_pie_all_cost():
-    _all = Account.objects.filter(
-        spent_date__gt=datetime(now().year,now().month,1)-relativedelta(months=+5) # dateutil.relativedelata.relativedelta()偏移选择日期
+    _all = Account.objects.filter(  # 让其显示最近六个月的数据
+        spent_date__gte=datetime(now().year,now().month,1)-relativedelta(months=+5) # dateutil.relativedelata.relativedelta()偏移选择日期
     ).values(
         "spent_date", "reason"
     ).annotate(
@@ -32,13 +32,20 @@ def draw_pie_all_cost():
     CHOICE = dict(Account.TAGS_CHOICE)  # 名字
 
     for k, v in d.items():
-        dict_cost = {CHOICE[_['reason']]: _['cost__sum'] for _ in v}
+        dict_cost = {}
+        for _ in v:
+            r = CHOICE[_['reason']] # 转换之后的*消费理由*
+            c = _['cost__sum']  # 花费
+            if r in dict_cost:
+                dict_cost[r] += c
+            else:
+                dict_cost[r] = c
+
         cost_pie = Pie("{}年{}月".format(*k), "总开销{}元".format(sum(dict_cost.values()), width=800, height=100))
         cost_pie.add("{}-{}".format(*k), dict_cost.keys(), dict_cost.values(),
                      radius=[30, 75], is_label_show=True)
         timeline.add(cost_pie, "{}-{}".format(*k))
-        # if i > 5:
-        #     break
+
     return timeline
 
 
